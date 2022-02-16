@@ -12,6 +12,9 @@ from toddler.items import HouseInfoItem
 
 class ToddlerPipeline:
 
+    def __init__(self):
+        self.file = None
+
     def open_spider(self, spider):
         self.file = open('../output/house_info.jsonl', 'w', encoding='utf-8')
 
