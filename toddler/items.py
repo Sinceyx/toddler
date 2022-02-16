@@ -2,6 +2,7 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
+import json
 
 import scrapy
 from scrapy import Field
@@ -14,7 +15,7 @@ class ToddlerItem(scrapy.Item):
 
 
 class HouseInfoItem(scrapy.Item):
-    agent_info = Field()
+    agent_info = Field(serializer=json)
     listing_type = Field()
     full_address = Field()
     url = Field()

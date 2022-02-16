@@ -1,3 +1,5 @@
+import json
+
 import scrapy
 from scrapy import Selector, Request
 
@@ -41,7 +43,7 @@ class LutonSpider(scrapy.Spider):
             agent_item = AgentInfoItem()
             agent_item['name'] = ''.join(agent_xpath.xpath('./div/div/div/span/text()').extract())
             agent_item['email'] = ''.join(agent_xpath.xpath('./div/div/dl/dd[1]/a/text()').extract())
-            agent_list.append(agent_item)
+            agent_list.append(dict(agent_item))
 
         item['agent_info'] = agent_list
         yield item

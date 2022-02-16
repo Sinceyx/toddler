@@ -5,12 +5,21 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+import json
 
 from toddler.items import HouseInfoItem
 
 
 class ToddlerPipeline:
-    def process_item(self, item, spider):
-        pass
 
+    def open_spider(self, spider):
+        self.file = open('../output/house_info.jsonl', 'w', encoding='utf-8')
+
+    def close_spider(self, spider):
+        self.file.close()
+
+    def process_item(self, item, spider):
+        if isinstance(item, HouseInfoItem):
+            line = json.dumps(dict(item)) + '\n'
+            self.file.write(line)
+        return item
