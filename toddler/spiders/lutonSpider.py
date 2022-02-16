@@ -24,6 +24,9 @@ class LutonSpider(scrapy.Spider):
         listing_detail_urls = selector.xpath('/html/body/div[1]/main/section[2]/article/div/div/ul/li/div/a/div[2]/address/meta/@content').extract()
         for detail_url in listing_detail_urls:
             yield Request(''.join(detail_url), callback=self.parse_for_sale_house_detail)
+        next_page_path = ''.join(selector.xpath('/html/body/div[1]/main/section[2]/article/div/div/div[2]/div/div[2]/a[2]/@href').extract())
+        if '#' != next_page_path:
+            yield Request(host+next_page_path,callback=self.parse_for_sale_list)
 
     def parse_for_sale_house_detail(self, response):
         item = HouseInfoItem()
