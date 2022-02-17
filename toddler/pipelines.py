@@ -6,8 +6,11 @@
 
 # useful for handling different item types with a single interface
 import json
+import os.path
 import re
+import sys
 
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from toddler.items import HouseInfoItem
 
 
@@ -17,7 +20,7 @@ class ToddlerPipeline:
         self.file = None
 
     def open_spider(self, spider):
-        self.file = open('../output/house_info.jsonl', 'w', encoding='utf-8')
+        self.file = open('./output/house_info.jsonl', 'w', encoding='utf-8')
 
     def close_spider(self, spider):
         self.file.close()
