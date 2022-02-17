@@ -38,7 +38,7 @@ class ToddlerPipeline:
 
     def process_item(self, item, spider):
         if isinstance(item, HouseInfoItem):
-            if self.__to_filter(self, item):
+            if self.__to_filter(item):
                 self.file.write(json.dumps(dict(item)) + '\n')
                 return item
 

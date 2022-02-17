@@ -16,23 +16,23 @@ class LutonSpider(scrapy.Spider):
         selector = Selector(response)
         properties_for_sale_restful_path = ''.join(selector.xpath('//*[@id="site-header"]/div[2]/nav/ul/li[1]/ul/li[1]/a/@href').extract())
         properties_for_sale_url = HOST + properties_for_sale_restful_path
-        yield Request(properties_for_sale_url, callback=self.parse_house_list)
+        yield Request(properties_for_sale_url, callback=self.__parse_house_list)
 
         properties_for_lease_restful_path = ''.join(
             selector.xpath('//*[@id="site-header"]/div[2]/nav/ul/li[3]/ul/li[1]/a/@href').extract())
         properties_for_lease_restful_url = HOST + properties_for_lease_restful_path
-        yield Request(properties_for_lease_restful_url, callback=self.parse_house_list)
+        yield Request(properties_for_lease_restful_url, callback=self.__parse_house_list)
 
-    def parse_house_list(self, response):
+    def __parse_house_list(self, response):
         selector = Selector(response)
         listing_detail_urls = selector.xpath('/html/body/div[1]/main/section[2]/article/div/div/ul/li/div/a/div[2]/address/meta/@content').extract()
         for detail_url in listing_detail_urls:
-            yield Request(''.join(detail_url), callback=self.parse_house_detail)
+            yield Request(''.join(detail_url), callback=self.__parse_house_detail)
         next_page_path = ''.join(selector.xpath('/html/body/div[1]/main/section[2]/article/div/div/div[2]/div/div[2]/a[2]/@href').extract())
         if '#' != next_page_path:
-            yield Request(HOST + next_page_path, callback=self.parse_house_list)
+            yield Request(HOST + next_page_path, callback=self.__parse_house_list)
 
-    def parse_house_detail(self, response):
+    def __parse_house_detail(self, response):
         item = HouseInfoItem()
         selector = Selector(response)
         address_xpath = selector.xpath('/html/body/div[1]/main/section[2]/div/h1')
