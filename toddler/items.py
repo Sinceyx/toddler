@@ -1,17 +1,15 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+"""
+    Item is a return type as spider parse function,and as a parameter to pipeline process_item
+"""
+
 import json
 
 import scrapy
 from scrapy import Field
 
-
-class ToddlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+"""
+    House information structure of luton.com.au main products
+"""
 
 
 class HouseInfoItem(scrapy.Item):
@@ -19,6 +17,11 @@ class HouseInfoItem(scrapy.Item):
     listing_type = Field()
     full_address = Field()
     url = Field()
+
+
+"""
+    Agent information structure . Its value is as the value to HouseInfoItem['agent_info']
+"""
 
 
 class AgentInfoItem(scrapy.Item):
