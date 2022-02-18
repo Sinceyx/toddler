@@ -7,23 +7,20 @@ import json
 import scrapy
 from scrapy import Field
 
-"""
-    House information structure of luton.com.au main products
-"""
-
 
 class HouseInfoItem(scrapy.Item):
+    """
+        House information structure of luton.com.au main products
+    """
     agent_info = Field(serializer=json)
     listing_type = Field()
     full_address = Field()
     url = Field()
 
 
-"""
-    Agent information structure . Its value is as the value to HouseInfoItem['agent_info']
-"""
-
-
 class AgentInfoItem(scrapy.Item):
+    """
+        Agent information structure . Its value is as the value to HouseInfoItem['agent_info']
+    """
     email = Field()
     name = Field()
