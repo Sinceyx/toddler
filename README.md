@@ -4,7 +4,7 @@ learn to crawl website by scrapy
 # python version:3.8.2
 
 
-## Run with docker at the directory of toddler project
+## Run with docker at the parent directory of toddler project
 `cp toddler/Dockerfile ./`
 
 `cp toddler/toddler/requirements.txt ./`
