@@ -7,7 +7,7 @@ learn to crawl website by scrapy
 ## Run with docker at the directory of toddler project
 `cp toddler/Dockerfile ./`
 
-`cp toddler/toddler/requirements.txt`
+`cp toddler/toddler/requirements.txt ./`
 
 `docker build -t luton-spider .`
 
