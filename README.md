@@ -11,7 +11,7 @@ learn to crawl website by scrapy
 
 `docker build -t luton-spider .`
 
-`docker run -it -v /Users/xin.yu/Downloads/spider_output:/toddler_proj/output luton-spider`
+`docker run -it -v ${YOUR_DIR}:/toddler_proj/output luton-spider`
 
 ## Run with terminal at `/toddler`
 
